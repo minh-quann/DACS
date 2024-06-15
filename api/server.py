@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify
-from comments import crawl_comments
-from analyzer import analyzer_sentiments
+from get_comment import crawl_comments
+from analyze_comment import analyzer_sentiments
 from flask_cors import CORS
-import requests
 
 app = Flask(__name__)
 CORS(app)

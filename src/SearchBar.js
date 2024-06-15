@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
  
-const SearchBar = () => {
-  const [keyword, setKeyword] = useState('');
+const SearchBar = ({ onFetchData }) => {
+  const [url, setUrl] = useState('');
  
-  const handleChange = (e) => {
-    setKeyword(e.target.value);
-  };
- 
-  const handleSearch = () => {
-    console.log('Từ khóa tìm kiếm:', keyword);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onFetchData(url);
   };
  
   return (
-    <div className="search-bar-container">
+    <form onSubmit={handleSubmit} className="search-bar-container">
       <input
         type="text"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
         placeholder="Tên sản phẩm hoặc link URL"
-        value={keyword}
-        onChange={handleChange}
       />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+      <button type="submit">Submit</button>
+    </form>
   );
-};
+}
  
 export default SearchBar;

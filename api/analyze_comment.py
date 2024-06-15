@@ -1,5 +1,6 @@
-from nltk.sentiment.vader import SentimentIntensityAnalyzer 
+
 import math
+from nltk.sentiment.vader import SentimentIntensityAnalyzer 
      
 
 def analyzer_sentiments(comments):

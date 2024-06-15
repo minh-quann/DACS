@@ -1,9 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SearchBar from './SearchBar';
 import SanTM from './SanTM';
 import Hdsd from './Hdsd';
+import Display from './DisplayResult';
+import axios from 'axios';
 
 function App() {
+  const [data, setData] = useState(null);
+  const fetchData = async (url) => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/crawl_and_analyze_comments?', {
+        params: { url }
+      });
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   const projectName = "My React Project";
   const navItems = [
     { name: "Home", link: "#" },
@@ -90,7 +103,7 @@ function App() {
         <div className="logo" style={styles.logo}>
           <h1>{projectName}</h1>
         </div>
-        <SearchBar />
+        <SearchBar onFetchData={fetchData}/>
         <nav className="nav" style={styles.nav}>
           <ul className="nav-list" style={styles.navList}>
             {navItems.map((item, index) => (
@@ -109,6 +122,7 @@ function App() {
           </ul>
         </nav>
       </header>
+      <Display data={data}/>
       <SanTM />
       <Hdsd />
       <style>{styles.mediaQuery}</style>
