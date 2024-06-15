@@ -1,5 +1,3 @@
-// src/Hdsd.js
-
 import React from 'react';
 import './SearchBar.css'; // Ensure the CSS file is imported
 

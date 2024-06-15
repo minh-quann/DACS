@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchBar.css';
 
-function ResultDisplay({ data }) {
+function DisplayResult({ data }) {
   if (!data) {
     return <p>No data to display</p>;
   }
@@ -22,4 +22,4 @@ function ResultDisplay({ data }) {
   );
 }
 
-export default ResultDisplay;
+export default DisplayResult;
