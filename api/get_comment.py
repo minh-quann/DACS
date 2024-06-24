@@ -4,6 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import requests
+import time
+import pickle
 
      
 # Tạo user-agent
@@ -34,15 +36,25 @@ def crawl_comments(url):
     data = []
     
     driver = create_driver()
-    max_pages = 10
 
+    driver.get('https://www.amazon.com')
+    
+    # Đọc cookies từ file và thêm vào phiên làm việc
+    with open('amazon_cookies.pkl', 'rb') as file:
+        cookies = pickle.load(file)
+        for cookie in cookies:
+            driver.add_cookie(cookie)
+    
+    
+    max_pages = 10
     for page in range(0, max_pages+1):
         page_url = base_url.format(page=page)
         driver.get(page_url)
 
-        # WebDriverWait(driver, 10).until(
-        #         EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-hook="review"]'))
-        # )
+        # time.sleep(15)
+        WebDriverWait(driver, 7).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '#cm_cr-review_list'))
+        )
         
         html = driver.page_source      
         soup = BeautifulSoup(html, 'html.parser')

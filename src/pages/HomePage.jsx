@@ -1,27 +1,32 @@
 import React, {useState} from 'react';
-import SearchBar from './SearchBar';
-import SanTM from './SanTM';
-import Hdsd from './Hdsd';
+import SearchBar from '../components/SearchBar';
+import EcommercePlatform from '../components/EcommercePlatform';
+import HowToUse from '../components/HowToUse';
 import axios from 'axios'
-
+import LoadingSpinner from '../components/LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
   const fetchData = async (url) => {
     try {
+      setLoading(true);
       const response = await axios.get('http://127.0.0.1:5000/crawl_and_analyze_comments', {
         params: { url }
       });
-      setData(response.data);
-      if (response.data) {
-        navigate('/result', { state: { data: response.data } });
+      const response_info = await axios.get('http://127.0.0.1:5000/get_product_information', {
+        params: { url }
+      });
+      setLoading(false);
+      if (response.data && response_info.data) {
+        navigate('/result', { state: { data: response.data, info: response_info.data } });
       }
     } catch (error) {
       console.error('Error fetching data:', error);
+      setLoading(false);
     }
   };
 
@@ -121,17 +126,17 @@ function Home() {
                   className="nav-link"
                   style={styles.navLink}
                   onMouseOver={(e) => e.currentTarget.style.color = styles.navLinkHover.color}
-                  onMouseOut={(e) => e.currentTarget.style.color = styles.navLink.color}
-                >
-                  {item.name}
+                  onMouseOut={(e) => e.currentTarget.style.color = styles.navLink.color}>
+                    {item.name}
                 </a>
               </li>
             ))}
           </ul>
         </nav>
       </header>
-      <SanTM />
-      <Hdsd />
+      <EcommercePlatform />
+      {loading && <LoadingSpinner/>}
+      <HowToUse />
       <style>{styles.mediaQuery}</style>
     </div>
   );

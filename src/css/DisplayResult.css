@@ -1,0 +1,110 @@
+.display-data {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+
+}
+  
+.data-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  animation: slideInRight 1s ease-in-out, bounceIn 1.5s ease, colorChange 5s infinite alternate;
+  background: linear-gradient(135deg, #9ccaff, #fd9a9a);
+  margin-top: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  width: 750px;
+  height: 300px;
+  
+}
+  
+.data-card:hover {
+  transform: translateY(-10px);
+}
+
+.data-card p {
+  margin: 10px 0;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
+}
+
+.no-data {
+  text-align: center;
+  color: #999999;
+  font-family: 'Arial', sans-serif;
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+.result {
+  font-family: 'Arial', sans-serif;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.point {
+  font-family: 'Arial', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.note {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  font-style: italic;
+  display: inline-block;
+  color: red;
+}
+
+.newline::before {
+  content: "";
+  display: block;
+  margin-top: 0.5rem; 
+}
+
+
+.result, .data-card p {
+  margin-bottom: 10px; 
+  text-align: center !important; 
+}
+
+
+/* Keyframes for animations used in DisplayResult */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* @keyframes colorChange {
+  0% {
+    background: linear-gradient(135deg, #ff99cc, #ffccff);
+  }
+  100% {
+    background: linear-gradient(135deg, #ffccff, #ff99cc);
+  }
+} */

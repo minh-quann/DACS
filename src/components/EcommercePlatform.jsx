@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./SearchBar.css";
-import shopeeLogo from "./icon/sp.png"; // Điều chỉnh đường dẫn cần thiết
-import amazonLogo from "./icon/a.png";
-import lazadaLogo from "./icon/lz.png";
-import tikiLogo from "./icon/tk.png";
+import "../css/SearchBar.css";
+import shopeeLogo from "../icon/sp.png";
+import amazonLogo from "../icon/a.png";
+import lazadaLogo from "../icon/lz.png";
+import tikiLogo from "../icon/tk.png";
 
 const SanTM = () => {
   const [options, setOptions] = useState([
@@ -32,8 +32,8 @@ const SanTM = () => {
     },
   ]);
 
-  const [selectedOption, setSelectedOption] = useState(null); // Lưu trữ option được chọn
-  const [modalContent, setModalContent] = useState(null); // Lưu trữ nội dung của modal
+  const [selectedOption, setSelectedOption] = useState(null); 
+  const [modalContent, setModalContent] = useState(null);
 
   const handleVote = (id) => {
     if (id !== 1) {

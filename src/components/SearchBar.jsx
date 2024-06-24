@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SearchBar.css';
+import '../css/SearchBar.css';
 
  
 const SearchBar = ({ onFetchData }) => {
@@ -18,7 +18,7 @@ const SearchBar = ({ onFetchData }) => {
         onChange={(e) => setUrl(e.target.value)}
         placeholder="Tên sản phẩm hoặc link URL"
       />
-      <button type="submit">Submit</button>
+      <button type="submit">Check</button>
     </form>
   );
 }

@@ -54,11 +54,11 @@ def analyzer_sentiments(comments):
     pos_ratio = round(pos_ratio, 2)
 
     if (avg_rating >= 4 and pos_ratio >= 0.60):
-        conclusion = "Positive"
+        conclusion = "Được mọi người đánh giá tích cực"
     elif (avg_rating <= 3 and pos_ratio <= 0.40):
-        conclusion = "Negative"
+        conclusion = "Có nhiều đánh giá tiêu cực"
     else:
-        conclusion = "Neutral"
+        conclusion = "Nhiều ý kiến trái chiều"
     
 
     result = []

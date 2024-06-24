@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from get_comment import crawl_comments
 from analyze_comment import analyzer_sentiments
+from get_product_infor import crawl_product_info
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -42,6 +43,12 @@ def crawl_and_analyzer():
     # Phân tích cảm xúc các comment
     analysis_results = analyzer_sentiments(comments)
     return jsonify(analysis_results)
+
+@app.route('/get_product_information', methods=['GET'])
+def get_infor():
+    url = request.args.get('url')
+    product_info = crawl_product_info(url)
+    return jsonify(product_info)
 
 if __name__ == '__main__':
     app.run(debug=True)
